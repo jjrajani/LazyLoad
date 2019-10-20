@@ -1,3 +1,4 @@
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -5,7 +6,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     chunkFilename: '[name].[chunkhash].bundle.js',
-    filename: '[name].[chunkhash].bundle.js'
+    filename: '[name].[chunkhash].bundle.js',
+    path: path.resolve(__dirname, 'build')
   },
   devtool: 'eval-source-map',
   module: {
