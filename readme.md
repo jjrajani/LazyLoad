@@ -1,8 +1,11 @@
 ## React and Webpack Lazy Load and Code Split Examples
-[DEMO](envious-eggnog.surge.sh)
+
+[DEMO](http://envious-eggnog.surge.sh/#/)
 
 ### Webpack modifications
-We need to add the output.chunkFilename option to our webpack config.  This will tell webpack how to name our lazy loaded files.
+
+We need to add the output.chunkFilename option to our webpack config. This will tell webpack how to name our lazy loaded files.
+
 ```
 output: {
     // ...
@@ -11,7 +14,8 @@ output: {
 ```
 
 ### Babel
-We need to add a plugin to our .babelrc file to allow us to use the special `import()` syntax.  The `import()` syntax will allow us to chain a `.then` to the import statements.  The `.then` will be our hook to inject a handler to take over after the import is complete.
+
+We need to add a plugin to our .babelrc file to allow us to use the special `import()` syntax. The `import()` syntax will allow us to chain a `.then` to the import statements. The `.then` will be our hook to inject a handler to take over after the import is complete.
 
 ```
 {
@@ -21,7 +25,9 @@ We need to add a plugin to our .babelrc file to allow us to use the special `imp
 ```
 
 ### React Lazy Load HOC
+
 We will use an HOC to handle the async nature of our lazy loaded components.
+
 ```
 import React, { Component } from "react";
 export default function asyncComponent(getComponent) {
@@ -50,7 +56,9 @@ export default function asyncComponent(getComponent) {
 ```
 
 ## Using the AsyncComponent HOC
+
 First we create a component like we usually do.
+
 ```
 // Home.js
 import React from 'react';
@@ -70,7 +78,7 @@ The, to make our components lazy load, we will wrap them with the AsyncComponent
 
 ```
 // LazyHome.js
-import asyncComponent from '../../AsyncComponent';
+import asyncComponent from '../../hoc/AsyncComponent';
 
 const LazyHome = asyncComponent(() => {
   return new Promise((resolve => {
@@ -123,7 +131,8 @@ document.addEventListener("DOMContentLoaded", function() {
 ```
 
 ## Lazy load regular files
-We can lazy load any type of file using the  `import()` syntax.
+
+We can lazy load any type of file using the `import()` syntax.
 
 ```
 // async.js

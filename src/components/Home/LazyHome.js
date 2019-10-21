@@ -1,15 +1,22 @@
-import asyncComponent from '../../AsyncComponent';
+import { asyncComponent } from "hoc";
+import { promiseTimeout } from "utils";
 
 const LazyHome = asyncComponent(() => {
-  return new Promise((resolve => {
-    setTimeout(() => {
-      import(
-        /* webpackChunkName: "Home" */
-        /* webpackMode: "lazy" */
-        './Home'
-      ).then(module => resolve(module.default))
-    }, 1500)
-  }))
+  // Example of some loading time.
+  return promiseTimeout(resolve =>
+    import(
+      /* webpackChunkName: "Home" */
+      /* webpackMode: "lazy" */
+      "./Home"
+    ).then(module => resolve(module.default))
+  );
 });
 
-export default LazyHome
+export default LazyHome;
+
+// How we will actually use import()
+// return import(
+//   /* webpackChunkName: "Home" */
+//   /* webpackMode: "lazy" */
+//   "./Home"
+// ).then(module => module.default);
