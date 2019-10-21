@@ -1,5 +1,5 @@
 ## React and Webpack Lazy Load and Code Split Examples
-[DEMO](envious-eggnog.surge.sh)
+[DEMO](http://envious-eggnog.surge.sh/#/)
 
 ### Webpack modifications
 We need to add the output.chunkFilename option to our webpack config.  This will tell webpack how to name our lazy loaded files.
